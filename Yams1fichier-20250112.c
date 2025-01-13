@@ -15,6 +15,7 @@ int N;
 int NoJoueur;
 int NbreD;
 int Etat[5];
+
 char ReponseVide[10];
 char ReponseA [10];
 char ReponseB [10];
@@ -69,13 +70,19 @@ int main()
 
     Tirage ();
     Tour1();
-    printf ("\n\tLes valeurs des 05 D s sont: %i, %i, %i, %i, %i\n", A, B, C, D, E);
+    printf ("\n\tLes valeurs, premier lancé des 05 D s sont: %i, %i, %i, %i, %i\n", A, B, C, D, E);
 
     Lecture ();
-    printf ("\n\tLes valeurs des 05 D s sont: %i, %i, %i, %i, %i\n", A, B, C, D, E);
+    printf ("\n\tLes valeurs, premier lancé des 05 D s sont: %i, %i, %i, %i, %i\n", A, B, C, D, E);
 
     Tour2et3();
+    Lecture ();
 
+    printf ("\n\tLes valeurs, deuxieme lancé des 05 D s sont: %i, %i, %i, %i, %i\n", A, B, C, D, E);
+
+   Tour2et3 ();
+   Lecture ();
+    printf ("\n\tLes valeurs, troisieme lancé des 05 D s sont: %i, %i, %i, %i, %i\n", A, B, C, D, E);
 
     printf(" \n\n\n");
     return 0;
@@ -124,7 +131,7 @@ int Tour1()
 
 int Tour2et3()
 {
-   printf(" \n Tour 2 & 3 : %i, %i, %i, %i, %i",  Etat[1], Etat[2], Etat[3], Etat[4], Etat[5]);
+   printf(" \n Tour2&3 entrée : %i, %i, %i, %i, %i",  Etat[1], Etat[2], Etat[3], Etat[4], Etat[5]);
    fgets(ReponseVide, sizeof(ReponseVide), stdin); // Lire la réponse et ne pas prendre le retour chariot précédent
    
    //Interrogation sur le dé "A" 
@@ -251,7 +258,7 @@ int Tour2et3()
             }
         }
         
-        printf(" \n Tour Joueur : %i, %i, %i, %i, %i",  Etat[1], Etat[2], Etat[3], Etat[4], Etat[5]);
+        printf(" \n Tour2&3 sortie Joueur : %i, %i, %i, %i, %i",  Etat[1], Etat[2], Etat[3], Etat[4], Etat[5]);
         return 0;
 }
 
