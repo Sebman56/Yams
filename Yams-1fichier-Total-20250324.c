@@ -4,25 +4,20 @@
 #include <time.h>
 
 
+/**********************************************************************************************************************************************/
+/*********************************************************************************************************************************************/
+/****** Déclaration des variable et des tableaux  */
+/*********************************************************************************************************************************************/
+/*********************************************************************************************************************************************/
+
+
+/***** Declaration des variables créant la partie, feuille de match, nombre de joueur  */
 int NPlayer;
 int LignePartie;
 int ScoreLigne;
-
 int nbLignes = 16;
 
-/*************************************************************************** */
-/*************************************************************************** */
-/***** Lancement des Dés  */
-
-extern int Tirage(void);
-extern int SaisieDes(void);
-extern int Random(void);
-
-
-
-/*************************************************************************** */
-/*************************************************************************** */
-/***** Contrôle et vérification des Dés  */
+/***** Declaration des variables servant au contrôle et vérification des Dés  */
 int egaliteA;
 int egaliteB;
 int egaliteC;
@@ -34,17 +29,7 @@ int CompteurPetiteSuite;
 int CompteurGrandeSuite;
 int Somme;
 
-
-int LectureDes ();
-int CalculMoins8Plus25();
-int PetiteSuite();
-int GrandeSuite();
-int Egalite();
-int ConclusionEgalite();
-
-/*************************************************************************** */
-/*************************************************************************** */
-/***** Interrogation  des Dés  */
+/***** Declaration des variables servant à l'intérrogation des Dés  */
 int i;
 int n;
 int A;
@@ -63,11 +48,6 @@ char ReponseB [10];
 char ReponseC [10];
 char ReponseD [10];
 char ReponseE [10];
-
-
-int LectureDes ();
-int Tour1();
-int Tour2et3();
 
 
 /**************************************************************************** */
@@ -98,6 +78,28 @@ struct LigneTableauScore TableauScore[16] = {
 
 void AffichageScoreEtPartie(int nbLignes, int NPlayer, char **Joueur, int ScorePartie[][NPlayer]);
 
+/***** Delarations des fonction de lancement des Dés  */
+int Tirage(void);
+int SaisieDes(void);
+int Random(void);
+
+/***** Delarations des fonction de lecture des Dés  */
+int LectureDes ();
+int CalculMoins8Plus25();
+int PetiteSuite();
+int GrandeSuite();
+int Egalite();
+int ConclusionEgalite();
+
+/***** Delarations des fonctions de des 03 tours des joueurs  */
+int Tour1();
+int Tour2et3();
+
+/**********************************************************************************************************************************************/
+/*********************************************************************************************************************************************/
+/****** Developpement des fonctions  */
+/*********************************************************************************************************************************************/
+/*********************************************************************************************************************************************/
 int main() {
     printf("\nQuel est le nombre de joueur ? ");
     scanf("%d", &NPlayer);
@@ -123,25 +125,26 @@ int main() {
             ScorePartie[i][j] = 0;
         }
     }
-
+/*********************** La partie commence ici */
     for (int Tour = 0; Tour < 2 * NPlayer; Tour++) 
     {
         printf("\n\b****** Tour: %i\n", Tour);
-
-        
         Tirage ();
 
-        Tour1();
+        Tour1(); 
+        LectureDes ();
         printf ("\n\t111 Les valeurs du premier lancé des 05 Dés sont: %i, %i, %i, %i, %i ***\n\n",Etat[1], Etat[2], Etat[3], Etat[4], Etat[5]);
-        LectureDes ();
+       
 
-        Tour2et3();
-        printf ("\n\t222 Les valeurs du deuxieme lancé des 05 Dés sont: %i, %i, %i, %i, %i ***\n\n", Etat[1], Etat[2], Etat[3], Etat[4], Etat[5]);
+        Tour2et3();  
         LectureDes ();
+        printf ("\n\t222 Les valeurs du deuxieme lancé des 05 Dés sont: %i, %i, %i, %i, %i ***\n\n", Etat[1], Etat[2], Etat[3], Etat[4], Etat[5]);
+      
 
         Tour2et3 ();
-        printf ("\n\t333 Les valeurs du troisieme lancé des 05 Dés sont: %i, %i, %i, %i, %i ***\n\n", Etat[1], Etat[2], Etat[3], Etat[4], Etat[5]);
         LectureDes ();
+        //printf ("\n\t333 Les valeurs du troisieme lancé des 05 Dés sont: %i, %i, %i, %i, %i ***\n\n", Etat[1], Etat[2], Etat[3], Etat[4], Etat[5]);
+        
         printf(" \n\n\n");
     
         printf ("\n\t*** Les valeurs du dernier lancé des 05 Dés sont: %i, %i, %i, %i, %i ***\n\n", Etat[1], Etat[2], Etat[3], Etat[4], Etat[5]);
@@ -173,18 +176,18 @@ int main() {
 
         AffichageScoreEtPartie(nbLignes, NPlayer, Joueur, ScorePartie);
     }
-
-//    AffichageScoreEtPartie(nbLignes, NPlayer, Joueur, ScorePartie);
-
+/****************************************Fin de partie libération de la memoire (malloc) */
     printf("\n\bLibération de la memoire stockant les joueurs.\n");
-    for (int i = 0; i < NPlayer; i++) {
+    for (int i = 0; i < NPlayer; i++) 
+        {
         free(Joueur[i]);
-    }
+        }
     free(Joueur);
     printf("\n\b Mémoire libérée.\n");
     return 0;
-}
+} /************************************************************************************************************ Fin du main  */
 
+/***** Fonction d'affichage de la partie */
 void AffichageScoreEtPartie(int nbLignes, int NPlayer, char **Joueur, int ScorePartie[][NPlayer]) {
     printf("\nTableau complet AffichageScoreEtPartie:\n");
     for (int i = 0; i < nbLignes; i++) {
@@ -366,6 +369,7 @@ int Egalite()
    egaliteA = 0;
    if (A == B) {egaliteA = egaliteA +1;}
    if (A == C) {egaliteA = egaliteA +1;}
+   if (A == D) {egaliteA = egaliteA +1;}
    if (A == E) {egaliteA = egaliteA +1;}
      if (egaliteA == 1) { printf ("\n\t\t Il y a une paire avec le Dé A");}
      if (egaliteA == 2) { printf ("\n\t\t Il y a un brelan  avec le Dé A");}
@@ -402,7 +406,7 @@ int Egalite()
    if (E == A) {egaliteE = egaliteE +1;}
    if (E == B) {egaliteE = egaliteE +1;}
    if (E == C) {egaliteE = egaliteE +1;}
-   if (D == E) {egaliteE = egaliteE +1;}
+   if (E == D) {egaliteE = egaliteE +1;}
      if (egaliteE == 1) { printf ("\n\t\t Il y a une paire avec le Dé E");}
      if (egaliteE == 2) { printf ("\n\t\t Il y a un brelan  avec le Dé E");}
      if (egaliteE == 3) { printf ("\n\t\t Il y a un carré avec le Dé E");}
