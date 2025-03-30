@@ -8,7 +8,7 @@ Chaque joueur lance les 05 Dés afin de faire des combinaisons.
 Il a un total de 03 lancés pour faire une combinaison désirée qu'il faut choisir sur la feuille de score
 
 A chaque tour le tableau doit être rempli, sinon on y marque 0 dans une des cases des combinaisons, au choix.
-Chaque case de combinaison est remplie une seul fois.
-Tout remplissage et rédibitoire.
+Chaque case de combinaison ne peut être remplie qu'une une seule fois.
+Tout remplissage et irréversible.
 
 Lorsque la feuille de score est remplie ont fait les totaux.
